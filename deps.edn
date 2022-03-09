@@ -5,6 +5,14 @@
         org.clojars.crowbrammer/csv-exporter {:mvn/version "0.1.0"}}
  :aliases {:build {:extra-deps {io.github.clojure/tools.build {:git/tag "v0.7.5" :git/sha "34727f7"}}
                    :ns-default build}
+           :cover {:extra-paths ["test"]
+                         :extra-deps {eftest/eftest {:mvn/version "0.5.9"}
+                                      cloverage/cloverage {:mvn/version "1.2.2"}}
+                         :exec-fn     cloverage.coverage/run-project
+                         :exec-args {:test-ns-path ["test"]
+                                     :src-ns-path ["src"]
+                                     :runner :eftest
+                                     :runner-opts {:fail-fast? true}}}
            :test {:extra-paths ["test"]
                   :extra-deps {io.github.cognitect-labs/test-runner
                                {:git/tag "v0.5.0" :git/sha "b3fd0d2"}}
